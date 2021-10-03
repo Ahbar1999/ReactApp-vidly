@@ -7,14 +7,15 @@ const movies = [
     genre: { _id: "5b21ca3eeb7f6fbccd471818", name: "Action" },
     numberInStock: 6,
     dailyRentalRate: 2.5,
-    publishDate: "2018-01-03T19:04:28.809Z"
+    publishDate: "2018-01-03T19:04:28.809Z",
   },
   {
     _id: "stur65r8bokh9g",
     title: "Die Hard",
     genre: { _id: "5b21ca3eeb7f6fbccd471818", name: "Action" },
     numberInStock: 5,
-    dailyRentalRate: 2.5
+    dailyRentalRate: 2.5,
+    liked: true
   },
   {
     _id: "yddhfgxiktz798g",
