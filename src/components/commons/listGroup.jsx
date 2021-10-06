@@ -1,11 +1,10 @@
-import React, { Component } from "react";
-import { genres, getGenres } from "../../services/fakeGenreService";
+import React from "react";
 
 const ListGroup = (props) => {
   const { items, textProperty, valueProperty, selectedItem, handleGenre } =
     props;
   return (
-    <ul class="list-group">
+    <ul className="list-group">
       {items.map((item) => (
         <li
           key={item[valueProperty]}

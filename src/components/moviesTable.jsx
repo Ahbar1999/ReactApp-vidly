@@ -1,44 +1,45 @@
-import React from "react";
+import React, { Component } from "react";
 import Like from "./commons/like";
+import Table from "./commons/table";
 
-const MoviesTable = (props) => {
-  const { movies, onDelete, onLike } = props;
+class MoviesTable extends Component {
+  columns = [
+    { path: "title", label: "Title" },
+    { path: "genre.name", label: "Genre" },
+    { path: "numberInStock", label: "Stock" },
+    { path: "dailyRentalRate", label: "Rate" },
+    {
+      key: "like",
+      content: (movie) => (
+        <Like liked={movie.liked} onClick={() => this.props.onLike(movie)} />
+      ),
+    },
+    {
+      key: "delete",
+      content: (movie) => (
+        <button
+          onClick={() => this.props.onDelete(movie)}
+          type="button"
+          className="btn btn-danger"
+        >
+          Delete
+        </button>
+      ),
+    },
+  ];
 
-  return (
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Title</th>
-          <th scope="col">Genre</th>
-          <th scope="col">Stock</th>
-          <th scope="col">Rate</th>
-        </tr>
-      </thead>
-      <tbody>
-        {movies.map((movie) => (
-          <tr>
-            {/* <th scope="row"></th> */}
-            <td>{movie.title}</td>
-            <td>{movie.genre.name}</td>
-            <td>{movie.numberInStock}</td>
-            <td>{movie.dailyRentalRate}</td>
-            <td>
-              <Like liked={movie.liked} onClick={() => onLike(movie)} />
-            </td>
-            <td>
-              <button
-                onClick={() => onDelete(movie)}
-                type="button"
-                class="btn btn-danger"
-              >
-                Delete
-              </button>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  );
-};
+  render() {
+    const { movies, onSort, sortColumn } = this.props;
+
+    return (
+      <Table
+        columns={this.columns}
+        data={movies}
+        onSort={onSort}
+        sortColumn={sortColumn}
+      ></Table>
+    );
+  }
+}
 
 export default MoviesTable;
